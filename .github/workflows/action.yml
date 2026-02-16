@@ -1,22 +1,35 @@
-name: Create GitHub Release
+name: Deploy React Vite to GitHub Pages
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main  # sempre que houver push na main
 
 jobs:
-  release:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Pegar o código do repositório
       - uses: actions/checkout@v4
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+      # 2️⃣ Instalar Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '18'  # versão do Node
+
+      # 3️⃣ Instalar dependências
+      - name: Install dependencies
+        run: npm install
+
+      # 4️⃣ Build do projeto
+      - name: Build
+        run: npm run build
+
+      # 5️⃣ Deploy para GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
