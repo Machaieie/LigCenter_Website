@@ -1,7 +1,7 @@
 export default function Header() {
     return (
-        <div className="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
-            <img src="./assets/banner.png" style={{width:200}} alt="" className="w-32" />
+        <div className="w-11/12 max-w-3xl text-center mx-auto h-screen  flex flex-col items-center justify-center gap-4">
+            <img src="./assets/banner.png" style={{width:200, marginTop:200}} alt="" className="w-32" />
 
             <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo">
                 Agência de Inteligência Artificial
