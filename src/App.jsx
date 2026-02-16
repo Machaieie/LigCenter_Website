@@ -17,7 +17,6 @@ export default function App() {
             <Services />
             <Work />
             <Contact />
-            {/* <Footer /> */}
         </>
     )
 }
